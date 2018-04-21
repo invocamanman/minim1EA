@@ -8,6 +8,7 @@ var UserSchema = new mongoose.Schema({
     state:{type: Boolean, required: true},
     bloqueado:{type: Boolean, required: true},
     password: { type: String, required: true }
+    //_id: { type: String }
    // wallet:Number
 });
 

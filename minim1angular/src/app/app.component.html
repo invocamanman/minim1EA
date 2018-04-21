@@ -1,0 +1,69 @@
+<div *ngIf="showLogin">
+  <h1>First login as a admin</h1>
+    <input #username type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="">
+    <input #password type="password" id="inputpassword" class="form-control" placeholder="password" required="" autofocus="">
+    <button class="btn btn-lg btn-primary btn-block" (click)="login(username.value, password.value)">Login</button>
+</div>
+
+
+
+<div *ngIf="showRegister">
+  <h2>You can also register as a user</h2>
+  <input #usernameR type="text" id="regUsername" class="form-control" placeholder="Username" required="" autofocus="">
+  <input #passwordR type="password" id="regpassword" class="form-control" placeholder="password" required="" autofocus="">
+  <input #surnameR type="text" id="regsurname" class="form-control" placeholder="surname" required="" autofocus="">
+  <input #roleR type="text" id="roleR" class="form-control" placeholder="role" required="" autofocus="">
+  <p>Solo tendra preferencia el rol de administrador , cualquier rol diferente de este se tratara por igual, porfavor cree un usuario administrador para entrar</p>
+  <button class="btn btn-lg btn-primary btn-block" (click)="Register(usernameR.value, passwordR.value, surnameR.value,roleR.value )">Resgister</button>
+  <p>{{resultadoRegister}}</p>
+</div>
+
+
+<div *ngIf="showlogout">
+  <button class="btn btn-lg btn-primary btn-block" (click)="logout()">logout</button>
+  <h2>{{resultadologin}}</h2>
+</div>
+
+
+
+
+<div *ngIf="showResto">
+  <h2>Search for users</h2>
+  <input #buscador type="text" id="buscador" class="form-control" placeholder="buscar" required="" autofocus="">
+  <button class="btn btn-lg btn-primary btn-block" (click)="Buscaralfabetico(buscador.value)">busqueda alfabetico</button>
+  <button class="btn btn-lg btn-primary btn-block" (click)="Buscarnombre(buscador.value)">busca por nombre</button>
+  <button class="btn btn-lg btn-primary btn-block" (click)="Buscarsurname(buscador.value)">busca por apellido</button>
+  <button class="btn btn-lg btn-primary btn-block" (click)="Buscarrol(buscador.value)">busca por rol</button>
+  <button class="btn btn-lg btn-primary btn-block" (click)="Buscastate(buscador.value)">busca por estado, debe poner true o false </button>
+  <ul>
+    <li *ngFor="let user of userlist">
+      <p>Name: {{user.name}}</p>
+      <p>Surname: {{user.surname}}</p>
+      <p>Active: {{user.state}}</p>
+      <p>Role: {{user.role}}</p>
+      <p>Id: {{user._id}}</p>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="showResto">
+  <h2>Search and modify a user, only will modify the fields that you complete, then press modify</h2>
+  <input #buscador type="text" id="buscador1" class="form-control" placeholder="introduce la id del usuario" required="" autofocus="">
+  <button class="btn btn-lg btn-primary btn-block" (click)="Buscarporid(buscador.value)">busqueda por id</button>
+      <p>Name: {{userdetalle.name}}</p>
+      <input #nameM type="text" id="MUsername" class="form-control"  placeholder="modify username" required="" autofocus="">
+      <p>Surname: {{userdetalle.surname}}</p>
+      <input #surnameM type="password" id="Mpassword" class="form-control"  placeholder="modify password" required="" autofocus="">
+      <p>Rol: {{userdetalle.role}}</p>
+      <input #rolM type="text" id="Msurname" class="form-control"  placeholder="modify rol" required="" autofocus="">
+      <button class="btn btn-lg btn-primary btn-block" (click)="Modificar(nameM.value, surnameM.value,rolM.value)">modify</button>
+       <p> {{mensajemodify}}</p>
+
+</div>
+
+<div *ngIf="showResto">
+  <h3>Bloquea a un usuario con su id</h3>
+  <input #buscadord type="text" id="buscador1d" class="form-control" placeholder="introduce la id del usuario" required="" autofocus="">
+  <button class="btn btn-lg btn-primary btn-block" (click)="Bloquearporid(buscadord.value)">busqueda por id</button>
+
+</div>
