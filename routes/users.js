@@ -75,6 +75,10 @@ router.post('/login', function(req, res, next) {
 
             return res.status(202).send({'result': '0'});
         }
+        if(user.bloqueado==true)
+        {
+            return res.status(203).send({'result': '3'});
+        }
         return res.status(200).send({'result': '1'});
     });
 
@@ -88,8 +92,8 @@ router.post('/detalleusuairo', function(req, res, next) {
             next(err);
         }
         if(user==null){
-            //return res.status(494).send();
-            return res.json(user);
+            return res.status(494).send();
+            //return res.json(user);
 
         }
         var newuser = new User();
